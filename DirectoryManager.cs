@@ -1,8 +1,8 @@
 ﻿namespace ImageOrganiser;
 
 class DirectoryManager {
-    HashSet<int> _years;
-    HashSet<string> _months; // YYYYMM
+    readonly HashSet<int> _years;
+    readonly HashSet<string> _months; // YYYYMM
 
     public DirectoryManager() {
         _years = new();
@@ -38,6 +38,7 @@ class DirectoryManager {
         }
     }
 
+    #region Private Methods
     private void CreateYearSubDirectories(string targetDirectory) {
         string[] existingDirectories = Directory.GetDirectories(targetDirectory);
 
@@ -70,8 +71,9 @@ class DirectoryManager {
             Directory.CreateDirectory($"{(Months)month - 1}");
             }
     }
-
-    private void CreateSubDirectory(string targetDirectory, string directoryName) {
+    
+    private static void CreateSubDirectory(string targetDirectory, string directoryName) { 
         Directory.CreateDirectory(targetDirectory + directoryName);
     }
+    #endregion
 }
